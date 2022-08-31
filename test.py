@@ -1,18 +1,22 @@
 import random
 
-num_teams = int(input("How many teams? : "))
-with open('class_list.txt', "r") as readfile: 
-    people = readfile.readlines()
+def Team_Generator():
 
-num_people = len(people)
+    num_teams = int(input("How many teams? : "))
+    with open('class_list.txt', "r") as readfile: 
+        people = readfile.readlines()
 
-while num_people > 0 and num_teams > 0:
+    num_people = len(people)
+
+    while num_people > 0 and num_teams > 0:
+            
+        team = random.sample(people, int(num_people/num_teams))
+
+        for x in team:
+            people.remove(x)
         
-    team = random.sample(people, int(num_people/num_teams))
+        num_people-=int(num_people/num_teams)
+        num_teams-=1
+        print(team)
 
-    for x in team:
-        people.remove(x)
-    
-    num_people-=int(num_people/num_teams)
-    num_teams-=1
-    print(team)
+Team_Generator()
